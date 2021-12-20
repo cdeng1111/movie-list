@@ -29,6 +29,25 @@ updateMovies: function(req, res) {
       module.exports.getMovies(req, res);
     }
   })
-}
+},
+
+filterMoviesByWatch: function(req, res) {
+  models.filterWatch(req, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(result);
+    }
+  })
+},
+filterMoviesByTitleAndWatch: function(req, res) {
+  models.filterTitleAndWatch(req, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(result);
+    }
+  })
+},
 
 };

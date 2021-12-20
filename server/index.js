@@ -9,6 +9,14 @@ app.use(express.json());
 app.get('/movies', controllers.getMovies);
 app.post('/movies', controllers.postMovies);
 app.patch('/movies', controllers.updateMovies);
+app.get('/movies/filter/:watch', controllers.filterMoviesByWatch);
+app.get('/movies/filter/:title/:watch', controllers.filterMoviesByTitleAndWatch);
+
+
+// app.get('/movies/filter/:title/:watch', (req, res) =>{
+//   console.log('req.params:', req.params);
+//   res.send(req.params)
+// } );
 
 // app.get('/movies', (req, res) => {
 //   db.query("select * from movies", (err, result) =>{
@@ -58,3 +66,5 @@ app.patch('/movies', controllers.updateMovies);
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
+
+//need to change middleware

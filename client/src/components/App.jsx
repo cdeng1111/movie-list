@@ -11,6 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       movies: [],
+      targetList: [],
       title: '',
       watch:'',
       // error: 'There is no movie in the movie list.'
@@ -32,12 +33,58 @@ class App extends React.Component {
           })
   }
 
-  handleSearch(title) {
+
+
+
+  // handleSearch(title, watch) {
+  //   this.setState({ title: title });
+  //   axios.get('/movies')
+  //         .then(response =>{
+  //           const newMovies = response.data;
+  //           var targetList = newMovies.filter(movie =>{
+  //             return movie.title.indexOf(title) !== -1
+  //             && movie.watch.indexOf(watch) !== -1;
+  //       } );
+
+  //           console.log("newMovies from handle search:",newMovies );
+  //           console.log("targetList from handle search:",targetList );
+  //           this.setState({targetList});
+  //         })
+  //         .catch(error=>{
+  //           console.log('error getting data:', error)
+  //         })
+  // }
+
+        //goal: make a get request to the server and send watch status as well as search term and only get the matched items from server
+
+  handleSearch(title, watch) {
+    if ( title === undefined || title === '') {
     this.setState({ title: title });
-    // this.setState({ error: "no movie by that name found!" });
+    axios.get(`/movies/filter/${watch}`)
+          .then(response =>{
+            // const newMovies = response.data;
+            console.log('axios get response data:', response.data);
+            this.setState({targetList: response.data});
+          })
+          .catch(error=>{
+            console.log('error getting data:', error)
+          })
+      } else {
+        axios.get(`/movies/filter/${title}/${watch}`)
+        .then(response =>{
+          console.log('axios get response data:', response.data);
+          this.setState({targetList: response.data});
+        })
+        .catch(error=>{
+          console.log('error getting data:', error)
+        })
+      }
   }
+
+
   handleWatch(watch) {
     this.setState({ watch: watch });
+    this.handleSearch('', watch);
   }
 
   AddMovie(movie) {
@@ -75,7 +122,7 @@ class App extends React.Component {
 
         <SearchForm handleSearch={this.handleSearch} handleWatch={this.handleWatch} />
 
-        {this.state.movies.length > 0 ? <MovieList movies={this.state.movies} title={this.state.title} watch={this.state.watch} updateMovie={this.updateMovie}  /> : <p>{this.state.error}</p>}
+        <MovieList movies={this.state.movies} title={this.state.title} watch={this.state.watch} targetList={this.state.targetList} updateMovie={this.updateMovie}  />
       </div>
     )
   }

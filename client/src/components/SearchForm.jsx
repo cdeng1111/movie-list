@@ -19,7 +19,7 @@ class SearchForm extends React.Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.props.handleSearch(this.state.title);
+    this.props.handleSearch(this.state.title, this.state.watch);
     this.setState({title:''});
   }
 
@@ -27,17 +27,15 @@ class SearchForm extends React.Component {
     event.preventDefault();
     console.log('this is from handleWatched!')
     this.setState({ showWatchButton: true});
-    this.setState({ watch: 'yes'});
-    this.props.handleWatch(this.state.watch);
+    this.setState({ watch: 'yes'}, () => {this.props.handleWatch(this.state.watch)} );
+    ;
     }
-
 
   handleToWatch() {
     event.preventDefault();
     console.log('this is from handleToWatch!')
     this.setState({ showWatchButton: false});
-    this.setState({ watch: 'no'});
-    this.props.handleWatch(this.state.watch);
+    this.setState({ watch: 'no'}, () => {this.props.handleWatch(this.state.watch)});
   }
 
   render() {

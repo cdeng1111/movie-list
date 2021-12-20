@@ -3,8 +3,8 @@ import React from 'react';
 class AddMovie extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {title: ''
-                   };
+    this.state = {title: '',
+                   watch: 'no'};
     this.handleMovieChange=this.handleMovieChange.bind(this);
     this.handleAddMovie = this.handleAddMovie.bind(this);
   }
