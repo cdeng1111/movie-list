@@ -1,20 +1,11 @@
 
 # Movie List
 
-## Getting Started
+Create a CRUD app using React that interfaces with a RESTful API powered by Node (with Express) and a database (MySQL) from scratch.
 
-1. Fork and clone this repo, then open two terminal tabs and navigate to the root directory.
+### Technlogies
 
-2. In one of the two seperate terminal tabs run the following script:
-  ```
-  npm start
-  ```
-
-3. In the second terminal tab run:
-  ```
-  npm run react-dev
-  ```
-
-4. Open localhost:3000 in the browser and you should see **Hello World!** if React is running correctly.
-
-Now you can get started building the application by visiting gLearn and following the next instructions there.
+1. For server: Node.js with [Express](https://www.npmjs.com/package/express) and [nodemon](https://www.npmjs.com/package/nodemon)
+2. For frontend: [React](https://www.npmjs.com/package/react) 
+3. For AXIOS requests: [axios](https://www.npmjs.com/package/axios) 
+4. For database: MySQL (with [mysql](https://www.npmjs.com/package/mysql))
